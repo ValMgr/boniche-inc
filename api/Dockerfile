@@ -6,7 +6,6 @@ ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERS
 RUN chmod +x /wait
 
 COPY start.sh /start.sh
-COPY .env /.env
 RUN chmod +x /start.sh
 
 RUN npm install -g nodemon
