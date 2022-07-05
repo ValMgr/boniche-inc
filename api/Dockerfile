@@ -18,4 +18,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD /wait && /start.sh
+CMD /wait && npm start
