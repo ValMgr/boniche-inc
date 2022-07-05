@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  db:
+    build: ./db
+    restart: always
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+      - MYSQL_USER=$MYSQLDB_USER
+      - MYSQL_PASSWORD=$MYSQLDB_PASSWORD
+    ports:
+      - $DB_PORT:3306
+    volumes:
+      - db:/var/lib/mysql
+  api:
+    build: ./api
+    links:
+      - db
+    depends_on:
+      - db
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - $API_PORT:3000
+    environment:
+      - WAIT_HOSTS=db:3306
+      - WAIT_HOSTS_TIMEOUT=5
+      - WAIT_SLEEP_INTERVAL=5
+      - WAIT_HOST_CONNECT_TIMEOUT=5
+    volumes:
+      - ./api:/api
+      - api_node_modules:/api/node_modules/
+
+  app:
+    build: ./app
+    restart: always
+    env_file: ./.env
+    ports:
+      - $APP_PORT:3000
+    volumes:
+      - ./app:/app
+      - app_node_modules:/app/node_modules/
+
+  adminer:
+    image: adminer
+    restart: always
+    env_file: ./.env
+    ports:
+      - $ADMINER_PORT:8080
+
+volumes:
+  db:
+  api_node_modules:
+  app_node_modules:

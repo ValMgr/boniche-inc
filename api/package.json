@@ -1,0 +1,25 @@
+{
+    "dependencies": {
+      "express": "^4.17.1",
+      "express-parse-multipart": "^1.1.2",
+      "mysql": "^2.18.1"
+    },
+    "name": "boniche-api",
+    "description": "API Boniche",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+      "start": "nodemon server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ValMgr/boniche-inc.git"
+    },
+    "author": "ZartaK40, Tracnor",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ValMgr/boniche-inc/issues"
+    },
+    "homepage": "https://github.com/ValMgr/boniche-inc#readme"
+  }
