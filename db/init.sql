@@ -2,10 +2,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT KEY,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `role` varchar(255) NOT NULL DEFAULT 'guest',
   `password` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS `members` (
     `country` varchar(255) NOT NULL,
     `city` varchar(255) NOT NULL,
     `description` longtext NOT NULL,
-    `created_at` datetime NOT NULL,
-    `updated_at` datetime NOT NULL
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `games`(
@@ -29,15 +29,15 @@ CREATE TABLE IF NOT EXISTS `games`(
     `min_players` varchar(255),
     `max_players` varchar(255),
     `server_ip` varchar(255),
-    `created_at` datetime NOT NULL,
-    `updated_at` datetime NOT NULL
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `categories`(
     `id` int(11) NOT NULL AUTO_INCREMENT KEY,
     `name` varchar(255) NOT NULL,
-    `created_at` datetime NOT NULL,
-    `updated_at` datetime NOT NULL
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `games_categories`(
